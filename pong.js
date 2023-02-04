@@ -2,6 +2,13 @@ function Ball() {
 this.id = "ball";
 this.x = 0;
 this.y = 0;
+this.vx=10;
+this.vy=10;
+let ball = document.getElementById("ball");
+this.height = ball.offsetHeight;
+this.width = ball.offsetWidth;
+
+
 }
 function Paddle(side) {
     this.id = side == "left" ? "padle1" : "padle2";
@@ -18,8 +25,15 @@ element.style.top = object.y + "px";
 }
 }
 function update() {
-ball.x += 5;
-ball.y += 5;
+ball.x += ball.vx;
+ball.y += ball.vy;
+let bodyRect = document.body.getBoundingClientRect();
+if (ball.x <= 0 || ball.x >= bodyRect.width - ball.height) {
+  ball.vx = -ball.vx;
+}
+if (ball.y <=0 || ball.y >= bodyRect.height -ball.width) {
+  ball.vy = -ball.vy;
+}
 place_objects([ball, padle1, padle2]);
 }
 
