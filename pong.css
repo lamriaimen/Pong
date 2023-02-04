@@ -1,0 +1,28 @@
+#ball{
+
+
+width: 64px;
+height: 64px;
+
+
+
+}
+
+#padle1,#padle2{
+
+
+    width: 24px; 
+    height: 192px;
+
+
+}
+
+
+body {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: 0px;
+    }
