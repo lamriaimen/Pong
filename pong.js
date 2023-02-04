@@ -11,9 +11,11 @@ this.width = ball.offsetWidth;
 
 }
 function Paddle(side) {
+  let bodyRect = document.body.getBoundingClientRect();
+
     this.id = side == "left" ? "paddle1" : "paddle2";
-    this.x = side == "left" ? 0 : window.innerWidth - 24;
-    this.y = window.innerHeight / 2 - 96;
+    this.x = side == "left" ? 0 : bodyRect.width - 24;
+    this.y = bodyRect.height / 2 - 96;
     this.height = 192;
     this.width = 24;
 }
@@ -30,7 +32,7 @@ ball.x += ball.vx;
 ball.y += ball.vy;
 let bodyRect = document.body.getBoundingClientRect();
 
-if (ball.y <=0 || ball.y >= bodyRect.height -ball.width) {
+if (ball.y <=0 || ball.y >= bodyRect.height -ball.height) {
   ball.vy = -ball.vy;
 }
 for(let key in buttons) {
