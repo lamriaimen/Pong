@@ -24,6 +24,7 @@ element.style.left = object.x + "px";
 element.style.top = object.y + "px";
 }
 }
+
 function update() {
 ball.x += ball.vx;
 ball.y += ball.vy;
@@ -34,9 +35,58 @@ if (ball.x <= 0 || ball.x >= bodyRect.width - ball.height) {
 if (ball.y <=0 || ball.y >= bodyRect.height -ball.width) {
   ball.vy = -ball.vy;
 }
+for(let key in buttons) {
+        if(buttons[key]) {
+            switch (key) {
+                case "p1_up": updatePaddle(paddle1,true);break;
+                case "p1_down": updatePaddle(paddle1, false); break;
+                case "p2_up": updatePaddle(paddle2, true); break;
+                case "p2_down": updatePaddle(paddle2, false); break;
+            }
+        }
+    }
+
 place_objects([ball, paddle1, paddle2]);
 }
 
+function updatePaddle(paddle,up) {
+   if(up) {
+      paddle.y -= 15;
+      if(paddle.y < 0 ) paddle.y = 0;
+   }
+   else {
+      let bodyRect = document.body.getBoundingClientRect();
+      paddle.y += 15;
+      if(paddle.y > bodyRect.height - paddle.height) {
+          paddle.y = bodyRect.height - paddle.height
+      }
+   }
+}
+
+function track_player_input(event) {
+    if (event.type == "keydown") {
+        switch (event.key) {
+            case "a": buttons.p1_up = true; break;
+            case "q": buttons.p1_down = true; break;
+            case "p": buttons.p2_up = true; break;
+            case "m": buttons.p2_down = true; break;
+        }
+    } else if (event.type == "keyup") {
+        switch (event.key) {
+            case "a": buttons.p1_up = false; break;
+            case "q": buttons.p1_down = false; break;
+            case "p": buttons.p2_up = false; break;
+            case "m": buttons.p2_down = false; break;
+        }
+    }
+}
+
+let buttons = {
+    "p1_up":false,
+    "p1_down":false,
+    "p2_up":false,
+    "p2_down": false,
+}
 
 let ball, paddle1, paddle2;
 function init() {
@@ -47,5 +97,6 @@ function init() {
     setInterval(update, 100);
 }
 
-
+document.addEventListener("keydown", track_player_input);
+document.addEventListener("keyup", track_player_input);
 window.addEventListener("load", init);
