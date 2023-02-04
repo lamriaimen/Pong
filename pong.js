@@ -143,7 +143,8 @@ function init() {
     ball = new Ball();
     paddle1 = new Paddle("left");
     paddle2 = new Paddle("right");
-    
+    let bodyRect = document.body.getBoundingClientRect();
+
   ball.x=bodyRect.width/2;
   ball.y=bodyRect.height/2;
 
