@@ -1,14 +1,11 @@
-#ball{
+#ball {
+  width: 64px;
+  height: 64px;
 
-
-width: 64px;
-height: 64px;
-
-position: absolute;
-
+  position: absolute;
 }
 
-#padle1,#padle2{
+#paddle1,#paddle2{
 
 
     width: 24px; 
@@ -17,24 +14,21 @@ position: absolute;
 
 }
 
-
 body {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    margin: 0px;
-    }
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  margin: 0px;
+}
 
+#scores {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 40px;
+  margin-top: 20px;
 
-#scores{
-justify-content: center;
-align-items: center;
-display: flex;
-font-size: 40px;
-margin-top: 20px;
-
-margin-bottom: 20px;
-
+  margin-bottom: 20px;
 }
