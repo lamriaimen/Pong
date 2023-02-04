@@ -29,9 +29,7 @@ function update() {
 ball.x += ball.vx;
 ball.y += ball.vy;
 let bodyRect = document.body.getBoundingClientRect();
-if (ball.x <= 0 || ball.x >= bodyRect.width - ball.height) {
-  ball.vx = -ball.vx;
-}
+
 if (ball.y <=0 || ball.y >= bodyRect.height -ball.width) {
   ball.vy = -ball.vy;
 }
@@ -64,7 +62,7 @@ for(let key in buttons) {
         ball.vx *= -1;
     }
     else if(ballLeft <= paddle2Right && ballRight >= paddle2Left && ballTop <= paddle2Bottom && ballBottom >= paddle2Top) {
-        ball.vx *= -1;
+        ball.vx *= -1;ball.vy*=-1;
     }
 
 place_objects([ball, paddle1, paddle2]);
