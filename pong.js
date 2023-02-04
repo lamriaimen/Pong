@@ -65,13 +65,13 @@ for(let key in buttons) {
         ball.vx *= -1;
     }
 
-    else if(ball.x <= 0) {
+    else if(ball.x < -20) {
       updateScore("right");
-      init();
+      reset();
   }
-  else if(ball.x + ball.width >= window.innerWidth) {
+  else if( ballRight > bodyRect.width+20) {
       updateScore("left");
-      init();
+      reset();
   }
     function updateScore(side) {
       let scoreElement = document.getElementById("ScorePl" + (side == "left" ? "Left" : "Right"));
@@ -119,6 +119,21 @@ let buttons = {
     "p1_down":false,
     "p2_up":false,
     "p2_down": false,
+}
+
+function reset(){
+
+
+  ball = new Ball();
+  paddle1 = new Paddle("left");
+  paddle2 = new Paddle("right");
+  let bodyRect = document.body.getBoundingClientRect();
+
+  ball.x=bodyRect.width/2;
+  ball.y=bodyRect.height/2;
+
+  place_objects([ball, paddle1, paddle2]);
+
 }
 
 let ball, paddle1, paddle2;
