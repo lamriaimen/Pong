@@ -46,6 +46,27 @@ for(let key in buttons) {
         }
     }
 
+
+    let ballLeft = ball.x;
+    let ballRight = ball.x + ball.width;
+    let ballTop = ball.y;
+    let ballBottom = ball.y + ball.height;
+    let paddle1Left = paddle1.x;
+    let paddle1Right = paddle1.x + paddle1.width;
+    let paddle1Top = paddle1.y;
+    let paddle1Bottom = paddle1.y + paddle1.height;
+    let paddle2Left = paddle2.x;
+    let paddle2Right = paddle2.x + paddle2.width;
+    let paddle2Top = paddle2.y;
+    let paddle2Bottom = paddle2.y + paddle2.height;
+
+    if(ballLeft <= paddle1Right && ballRight >= paddle1Left && ballTop <= paddle1Bottom && ballBottom >= paddle1Top) {
+        ball.vx *= -1;
+    }
+    else if(ballLeft <= paddle2Right && ballRight >= paddle2Left && ballTop <= paddle2Bottom && ballBottom >= paddle2Top) {
+        ball.vx *= -1;
+    }
+
 place_objects([ball, paddle1, paddle2]);
 }
 
