@@ -143,6 +143,10 @@ function init() {
     ball = new Ball();
     paddle1 = new Paddle("left");
     paddle2 = new Paddle("right");
+    
+  ball.x=bodyRect.width/2;
+  ball.y=bodyRect.height/2;
+
     place_objects([ball, paddle1, paddle2]);
     setInterval(update, 100);
 }
