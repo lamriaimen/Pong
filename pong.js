@@ -11,7 +11,7 @@ this.width = ball.offsetWidth;
 
 }
 function Paddle(side) {
-    this.id = side == "left" ? "padle1" : "padle2";
+    this.id = side == "left" ? "paddle1" : "paddle2";
     this.x = side == "left" ? 0 : window.innerWidth - 24;
     this.y = window.innerHeight / 2 - 96;
     this.height = 192;
@@ -35,31 +35,30 @@ if (ball.x <= 0 || ball.x >= bodyRect.width - ball.height) {
 if (ball.y <=0 || ball.y >= bodyRect.height -ball.width) {
   ball.vy = -ball.vy;
 }
-ball.x += 5;
-    ball.y += 5;
-    for(let key in buttons) {
+for(let key in buttons) {
         if(buttons[key]) {
             switch (key) {
-                case "p1_up": updatePadle(padle1,true);break;
-                case "p1_down": updatePadle(padle1, false); break;
-                case "p2_up": updatePadle(padle2, true); break;
-                case "p2_down": updatePadle(padle2, false); break;
+                case "p1_up": updatePaddle(paddle1,true);break;
+                case "p1_down": updatePaddle(paddle1, false); break;
+                case "p2_up": updatePaddle(paddle2, true); break;
+                case "p2_down": updatePaddle(paddle2, false); break;
             }
         }
     }
-place_objects([ball, padle1, padle2]);
+
+place_objects([ball, paddle1, paddle2]);
 }
 
-function updatePadle(padle,up) {
+function updatePaddle(paddle,up) {
    if(up) {
-      padle.y -= 15;
-      if(padle.y < 0 ) padle.y = 0;
+      paddle.y -= 15;
+      if(paddle.y < 0 ) paddle.y = 0;
    }
    else {
       let bodyRect = document.body.getBoundingClientRect();
-      padle.y += 15;
-      if(padle.y > bodyRect.height - padle.height) {
-          padle.y = bodyRect.height - padle.height
+      paddle.y += 15;
+      if(paddle.y > bodyRect.height - paddle.height) {
+          paddle.y = bodyRect.height - paddle.height
       }
    }
 }
@@ -82,18 +81,19 @@ function track_player_input(event) {
     }
 }
 
-let ball, padle1, padle2;
 let buttons = {
     "p1_up":false,
     "p1_down":false,
     "p2_up":false,
     "p2_down": false,
 }
+
+let ball, paddle1, paddle2;
 function init() {
     ball = new Ball();
-    padle1 = new Paddle("left");
-    padle2 = new Paddle("right");
-    place_objects([ball, padle1, padle2]);
+    paddle1 = new Paddle("left");
+    paddle2 = new Paddle("right");
+    place_objects([ball, paddle1, paddle2]);
     setInterval(update, 100);
 }
 
