@@ -1,7 +1,7 @@
 function Ball() {
 this.id = "ball";
-this.x = 0;
-this.y = 0;
+this.x = 50;
+this.y = 50;
 this.vx=10;
 this.vy=10;
 let ball = document.getElementById("ball");
@@ -62,9 +62,23 @@ for(let key in buttons) {
         ball.vx *= -1;
     }
     else if(ballLeft <= paddle2Right && ballRight >= paddle2Left && ballTop <= paddle2Bottom && ballBottom >= paddle2Top) {
-        ball.vx *= -1;ball.vy*=-1;
+        ball.vx *= -1;
     }
 
+    else if(ball.x <= 0) {
+      updateScore("right");
+      init();
+  }
+  else if(ball.x + ball.width >= window.innerWidth) {
+      updateScore("left");
+      init();
+  }
+    function updateScore(side) {
+      let scoreElement = document.getElementById("ScorePl" + (side == "left" ? "Left" : "Right"));
+      let score = parseInt(scoreElement.textContent.trim());
+      scoreElement.textContent = score + 1;
+  }
+  
 place_objects([ball, paddle1, paddle2]);
 }
 
