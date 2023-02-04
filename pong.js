@@ -24,10 +24,10 @@ function update() {
     for(let key in buttons) {
         if(buttons[key]) {
             switch (key) {
-                case "p1_up": padle1.y -= 3; break;
-                case "p1_down": padle1.y += 3; break;
-                case "p2_up": padle2.y -= 3; break;
-                case "p2_down": padle2.y += 3; break;
+                case "p1_up": updatePadle(padle1,true);break;
+                case "p1_down": updatePadle(padle1, false); break;
+                case "p2_up": updatePadle(padle2, true); break;
+                case "p2_down": updatePadle(padle2, false); break;
             }
         }
     }
@@ -35,7 +35,17 @@ place_objects([ball, padle1, padle2]);
 }
 
 function updatePadle(padle,up) {
-   if(up && padle.y+3)
+   if(up) {
+      padle.y -= 15;
+      if(padle.y < 0 ) padle.y = 0;
+   }
+   else {
+      let bodyRect = document.body.getBoundingClientRect();
+      padle.y += 15;
+      if(padle.y > bodyRect.height - padle.height) {
+          padle.y = bodyRect.height - padle.height
+      }
+   }
 }
 
 function track_player_input(event) {
